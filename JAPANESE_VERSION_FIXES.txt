@@ -1,0 +1,11 @@
+2026-07-15 修正版
+
+Angularテンプレート内で誤って日本語化されていたプログラム識別子を修正しました。
+
+修正内容:
+- open表示言語Dialog() -> openLanguageDialog()
+- supported表示言語s -> supportedLanguages
+- selected拡張セット -> selectedExpansions
+- supported拡張セット -> supportedExpansions
+
+画面に表示する日本語文言は維持しています。

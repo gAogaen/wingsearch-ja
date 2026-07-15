@@ -346,7 +346,7 @@
             </div>
             <div class="language-wrapper">
                 <div appAnalyticsEvent="Show language support" matTooltip="More about language support"
-                    (click)="open表示言語Dialog()">
+                    (click)="openLanguageDialog()">
                     <mat-icon>help_outline</mat-icon>
                 </div>
                 <mat-form-field class="language-select">
@@ -355,7 +355,7 @@
                         <mat-select-trigger>
                             <img src="assets/icons/i18n/{{language}}.jpg">
                     </mat-select-trigger>
-                    <mat-option class="language-option" *ngFor="let language of supported表示言語s"
+                    <mat-option class="language-option" *ngFor="let language of supportedLanguages"
                         [value]="language.value">
                         <span>
                             <picture>
@@ -372,15 +372,15 @@
             <div class="expansion-wrapper">
                 <mat-form-field>
                     <mat-label>拡張セット</mat-label>
-                    <mat-select [(ngModel)]="selected拡張セット" (ngModelChange)="expansionChange($event)" multiple>
+                    <mat-select [(ngModel)]="selectedExpansions" (ngModelChange)="expansionChange($event)" multiple>
                         <mat-select-trigger>
-                            <picture *ngFor="let expansion of selected拡張セット">
+                            <picture *ngFor="let expansion of selectedExpansions">
                                 <source type="image/webp" srcset="assets/icons/png/{{expansion}}.webp">
                                 <source type="image/jpg" srcset="assets/icons/png/{{expansion}}.png">
                                 <img src="assets/icons/png/{{expansion}}.png">
                             </picture>
                         </mat-select-trigger>
-                        <mat-option class="expansion-option" *ngFor="let expansion of supported拡張セット"
+                        <mat-option class="expansion-option" *ngFor="let expansion of supportedExpansions"
                             [value]="expansion.value" appAnalyticsEvent="Toggle expansion" [eventLabel]="expansion.value">
                             <span>
                                 <picture>
