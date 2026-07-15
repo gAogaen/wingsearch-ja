@@ -1,0 +1,70 @@
+name: Deploy Japanese Wingsearch to GitHub Pages
+
+on:
+  push:
+    branches: ["master", "main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "14.21.3"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Determine GitHub Pages base path
+        id: base
+        shell: bash
+        run: |
+          REPOSITORY_NAME="${GITHUB_REPOSITORY#*/}"
+          OWNER_NAME="${GITHUB_REPOSITORY%/*}"
+          if [ "$REPOSITORY_NAME" = "$OWNER_NAME.github.io" ]; then
+            echo "href=/" >> "$GITHUB_OUTPUT"
+          else
+            echo "href=/$REPOSITORY_NAME/" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build Angular application
+        run: npm run ng -- build --prod --base-href "${{ steps.base.outputs.href }}" --output-path dist/wingsearch
+
+      - name: Add SPA fallback and disable Jekyll
+        run: |
+          cp dist/wingsearch/index.html dist/wingsearch/404.html
+          touch dist/wingsearch/.nojekyll
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/wingsearch
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

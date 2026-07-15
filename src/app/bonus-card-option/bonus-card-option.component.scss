@@ -1,0 +1,97 @@
+.option-container {
+    display: flex;
+    flex-direction: column;
+    flex: auto 1 1;
+    flex-wrap: nowrap;
+    height: 128px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.description-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 8px;
+}
+
+.name {
+    font-size: large;
+    font-family: Pangolin, sans-serif;
+    color: #666666;
+    line-height: 30px;
+    text-transform: uppercase;
+}
+
+.description {
+    font-family: Jost, sans-serif;
+    font-weight: 300;
+    line-height: 20px;
+    white-space: normal;
+    margin-bottom: 10px;
+}
+
+.explanation {
+    font-style: italic;
+    font-size: smaller;
+    font-family: Jost, sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
+    line-height: 20px;
+    white-space: normal;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.points {
+    display: flex;
+    justify-content: space-around;
+    font-family: CardenioModernBold, SiliciStrong, sans-serif;
+    color: #666666;
+    margin-left: auto;
+    padding-right: 0.2em;
+
+    .condition {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        .part.point {
+            font-size: 1.4em;
+            line-height: 1.8em;
+
+            ::ng-deep {
+                .icon-image {
+                    max-height: 1.5em;
+                    max-width: 1.5em;
+                    bottom: -0.5em;
+                    left: -0.3em;
+                }
+
+                .icon-picture {
+                    max-height: 1.5em;
+                    max-width: 1.5em;
+                }
+            }
+        }
+
+        .part.point:not(:first-child) {
+            margin-top: -1em;
+        }
+
+        .part.point:first-child {
+            margin-bottom: -0.8em;
+        }
+
+    }
+
+    :not(:first-child) {
+        margin-left: 0.2em;
+    }
+}
+
+.row {
+    display: flex;
+    flex-wrap: nowrap;
+}

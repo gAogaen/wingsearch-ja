@@ -1,0 +1,18 @@
+.fill-parent {
+    height: calc(100% - 2px);
+    width: 100%;
+    padding: 0px;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #f5f6f1;
+    outline: unset;
+}
+
+mat-grid-list {
+    margin: 20px auto;
+    max-width: 1400px;
+}
+
+:host {
+    padding: 0 5px;
+}

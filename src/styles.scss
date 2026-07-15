@@ -1,0 +1,212 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+
+$wingsearch-primary: mat-palette((
+    50 : #ece8e2,
+    100 : #d0c7b7,
+    200 : #b1a187,
+    300 : #917b57,
+    400 : #7a5f33,
+    500 : #62430f,
+    600 : #5a3d0d,
+    700 : #50340b,
+    800 : #462c08,
+    900 : #341e04,
+    A100 : #ffaf6c,
+    A200 : #ff9439,
+    A400 : #ff7806,
+    A700 : #eb6c00,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+));
+$wingsearch-accent: mat-palette((
+    50 : #e5f4f3,
+    100 : #bee4e1,
+    200 : #93d3cd,
+    300 : #67c1b8,
+    400 : #47b3a9,
+    500 : #26a69a,
+    600 : #229e92,
+    700 : #1c9588,
+    800 : #178b7e,
+    900 : #0d7b6c,
+    A100 : #adfff3,
+    A200 : #7affec,
+    A400 : #47ffe4,
+    A700 : #2dffe0,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+));
+
+// The warn palette is optional (defaults to red).
+$wingsearch-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$wingsearch-theme: mat-light-theme($wingsearch-primary, $wingsearch-accent, $wingsearch-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($wingsearch-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+// Fonts downloadable from Google
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wdth@0,75;1,75&family=Pangolin&display=swap');
+
+html, body, .flycatcher { height: 100%; }
+
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-image: url('assets/background.webp');
+    background-size: cover;
+}
+
+.no-webpalpha body {
+    background-image: url('assets/background.png');
+}
+
+.flycatcher {
+    background-image: url('assets/flycatcher.webp');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.no-webpalpha .flycatcher {
+    background-image: url('assets/flycatcher.png');
+}
+
+.wingsearch-title {
+    display: none;
+}
+
+@media screen and (min-width: 850px) {
+    .flycatcher {
+        padding-top: 6vh;
+        background-position-y: 100px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .wingsearch-title {
+        display: unset;
+        font-family: CardenioModernBold, SiliciStrong, sans-serif;
+        color: #f5f6f1;
+        font-size: 140px;
+        line-height: 140px;
+        width: 100%;
+        text-align: center;
+        padding-bottom: 3vh;
+    }
+}
+
+.icon-image {
+    max-width: 1em;
+    max-height: 1em;
+    position: relative;
+    bottom: -0.1em;
+}
+
+.icon-picture {
+    max-height: 1em;
+    max-width: 1em;
+}
+
+.nobr {
+  white-space: nowrap;
+}
+
+.card-detail-panel {
+    pointer-events: none !important;
+
+    .mat-dialog-container {
+        background-color: unset;
+        padding: 0;
+        border-radius: 0;
+        box-shadow: none;
+        overflow-x: hidden;
+    }
+}
+
+.mat-dialog-content.detail-container {
+    height: 100vh;
+    max-height: unset;
+    margin: 0;
+    padding: 0;
+}
+
+strong[applink] {
+    cursor: pointer;
+}
+
+@media screen and (min-width: 600px) {
+    .bonus-card-option {
+        height: 128px!important;
+    }
+}
+
+@media screen and (max-width: 599px) {
+    .bonus-card-option {
+        height: 148px!important;
+    }
+}
+
+@font-face {
+    font-family: CardenioModernBold;
+    src: url('assets/fonts/CardenioModern-Bold.otf') format("opentype");
+    // Cardenio Modern only supports Latin alphabet and some special characters
+    unicode-range: U+0020-007E, U+00A1-00AC, U+00AE-0107, U+010A-0113, U+0116-011B, U+011E-0123, U+0126-0127, U+012A-012B, U+012E-0133, U+0136-0137, U+0139-013E, U+0141-0148, U+014A-014D, U+0150-015B, U+015E-0167, U+016A-016B, U+016E-017E, U+0218-021B, U+02C6-02C7, U+02C9, U+02D8-02DD, U+0300-0304, U+0306-0308, U+030A-030C, U+0326-0328, U+0335-0338, U+1E80-1E85, U+1E9E, U+1EF2-1EF3, U+2013-2014, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2039-203A, U+2044, U+207F, U+20AC, U+2116, U+2122, U+2190-2199, U+2202, U+2205, U+220F, U+2211-2212, U+221A, U+221E, U+222B, U+2248, U+2260, U+2264-2265, U+25CA;
+}
+
+@font-face {
+    // Silici Strong is used as fallback for Cardenio Modern Bold for Cyrillic alphabets
+    font-family: SiliciStrong;
+    src: url('assets/fonts/SiliciBold.ttf') format("opentype");
+    size-adjust: 110%;
+}
+
+@font-face {
+    font-family: ThirstyRoughLt;
+    src: url('assets/fonts/ThirstyRoughLt.otf') format("opentype");
+}
